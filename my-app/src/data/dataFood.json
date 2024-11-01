@@ -1,0 +1,12 @@
+[
+    {
+      "name": "Рыбные деликатесы",
+      "weight": "350 g",
+      "imageSrc": "../Component/image/1pos.png"
+    },
+    {
+      "name": "Русский малосол",
+      "weight": "300 g",
+      "imageSrc": "../Component/image/2pos.png"
+    }
+  ]
