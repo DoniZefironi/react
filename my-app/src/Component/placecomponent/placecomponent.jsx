@@ -2,8 +2,7 @@ import React from 'react';
 import './placecomponent.css';
 import photo1 from '../image/placebottom.png';
 
-export default function PlaceComponent(){
-    const { organization } = this.props;
+export default function PlaceComponent({ organization }){
     const photos = [
       {
         id: 1,

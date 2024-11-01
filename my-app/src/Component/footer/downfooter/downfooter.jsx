@@ -2,7 +2,6 @@ import React from 'react';
 import './downtextfooter.css';
 
 export default function DownFooter(){
-    const { organization } = this.props;
     return (
         <div class="downfooter">
         <p>© 2022 WAYGOOD</p>

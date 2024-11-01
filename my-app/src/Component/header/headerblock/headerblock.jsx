@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './headerblock.css';
 
 export default function HeaderBlock(){
   return (
@@ -12,8 +13,8 @@ export default function HeaderBlock(){
       <a href="#diners" id="contact">CONTACTS</a>
       <a href="#neigh" id="vauncher">GIFT VOUCHERS</a>
       <a href="#bookin" id="reserv">RESERVATION</a>
-      <button className="block-sign" id="languageButton" onClick={this.toggleLanguage}>English</button>
-      <button className="block-sign" id="themeButton" onClick={this.toggleTheme}>Переключить тему</button>
+      <button className="block-sign" id="languageButton" >English</button>
+      <button className="block-sign" id="themeButton" >Переключить тему</button>
       <button className="block-sign" id="sign">Sign Up</button>
       <button className="block-sign" id="aut">Authorization</button>
       <span id="usernameDisplay" style={{ display: 'none' }}></span>
