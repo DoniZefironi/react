@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./Component/header/header";
+import Footer from "./Component/footer/footer";
+import Placecomponent from "./Component/placecomponent/placecomponent"
+import { Route, Routes, useLocation } from "react-router-dom"
+import image from './Component/image/punch.png';
+import NotFound from './Component/NotFound/notfound';
 
-function App() {
+export default function App() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Header logo={image} />
+    <main>
+    <Routes>
+    <Route path="/" element={<>
+          <Placecomponent />
+    </>
+    } />
+    <Route path="/placecomponent" element={<Placecomponent />} />
+    <Route path="*" element={<NotFound />} />
+    </Routes>
+    </main>
+    <Footer />
+    </>
   );
 }
 
-export default App;
