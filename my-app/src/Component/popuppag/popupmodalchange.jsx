@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import './pop.css';
+import ButtonBlackStyle from "../buttonblack/buttonblack";
 
 function PopupModalChange({ openModalChange, toggleOpenModalChange, indexChangeElement, name, description, changeFunction }) {
     const [inputName, setInputName] = useState(name);

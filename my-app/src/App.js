@@ -4,7 +4,7 @@ import Placecomponent from "./Component/placecomponent/placecomponent"
 import { Route, Routes, useLocation } from "react-router-dom"
 import NotFound from './Component/NotFound/notfound';
 import Reserv from './Component/reserv/reserv';
-import Boxfurniture from './Component/boxi/box';
+import Boxfurniture from './Component/boxi/SectionFurniture';
 
 export default function App() {
   const location = useLocation();
