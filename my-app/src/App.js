@@ -3,6 +3,8 @@ import Footer from "./Component/footer/footer";
 import Placecomponent from "./Component/placecomponent/placecomponent"
 import { Route, Routes, useLocation } from "react-router-dom"
 import NotFound from './Component/NotFound/notfound';
+import Reserv from './Component/reserv/reserv';
+import Boxfurniture from './Component/boxi/box';
 
 export default function App() {
   const location = useLocation();
@@ -17,6 +19,8 @@ export default function App() {
     </>
     } />
     <Route path="/placecomponent" element={<Placecomponent />} />
+    <Route path="/reserv" element={<Reserv />} />
+    <Route path="/cards" element={<Boxfurniture/>} />
     <Route path="*" element={<NotFound />} />
     </Routes>
     </main>

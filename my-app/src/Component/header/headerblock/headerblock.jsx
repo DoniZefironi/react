@@ -11,8 +11,8 @@ export default function HeaderBlock(){
       <a href="#themenu" id="menus">MENU</a>
       <a href="#honest" id="drinkmenu">DRINKS MENU</a>
       <a href="#diners" id="contact">CONTACTS</a>
-      <a href="#neigh" id="vauncher">GIFT VOUCHERS</a>
-      <a href="#bookin" id="reserv">RESERVATION</a>
+      <Link to="/cards">GIFT VOUCHERS</Link>
+      <Link to="/reserv">RESERVATION</Link>
       <button className="block-sign" id="languageButton" >English</button>
       <button className="block-sign" id="themeButton" >Переключить тему</button>
       <button className="block-sign" id="sign">Sign Up</button>
