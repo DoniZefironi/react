@@ -1,0 +1,44 @@
+footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    background-color: #FFD36B;
+    padding-bottom: 6px;
+    opacity: 0;
+    transform: translateY(100%);
+    animation: slideInBottom 1s forwards;
+  }
+  @keyframes slideInBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  body.dark footer {
+    background-color: #352c18; 
+    color: #fff;
+  }
+  .imgfooter{
+    content: url("../image/placebottom.png");
+    margin-top: 36px;
+  }
+  body.dark .imgfooter{
+    filter: invert(1);
+  }
+  .textfooter{
+    display: flex;
+    gap: 86px;
+    align-items: start;
+    flex-direction: column;
+  }
+  @media (max-width: 490px) {
+
+    .imgfooter{
+        display: none;
+    }
+  }
