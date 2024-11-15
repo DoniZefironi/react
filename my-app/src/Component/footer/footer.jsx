@@ -6,9 +6,9 @@ import './footer.css';
 export default function Footer(){
     return (
         <footer>
-        <div class="imgfooter">
+        <div className="imgfooter">
         </div>
-        <div class="textfooter">
+        <div className="textfooter">
         <UpTextFooter />
         <DownFooter />
         </div>

@@ -58,18 +58,20 @@ function Boxfurniture() {
       <h1>Блюда</h1>
       <button onClick={addItem}>Добавить</button>
       <ul>
-        {items.map(item => (
-          <li
-            key={item.id}
-            onClick={() => toggleSelectItem(item.id)}
-            style={{ backgroundColor: selectedItems.includes(item.id) ? 'lightblue' : 'white' }}
-          >
-            {item.img}
-            {item.name}
-            <button onClick={(e) => { e.stopPropagation(); openModal(item); }}>Посмотреть</button>
-            <button onClick={(e) => { e.stopPropagation(); deleteItem(item.id); }}>Удалить</button>
-          </li>
-        ))}
+      {items.map(item => (
+  <li
+    key={item.id}
+    onClick={() => toggleSelectItem(item.id)}
+    style={{ backgroundColor: selectedItems.includes(item.id) ? 'lightblue' : 'white' }}
+  >
+    {item.img && <img src={item.img} alt={item.name} />} 
+    <div>
+      <p>{item.name}</p>
+      <button onClick={(e) => { e.stopPropagation(); openModal(item); }}>Посмотреть</button>
+      <button onClick={(e) => { e.stopPropagation(); deleteItem(item.id); }}>Удалить</button>
+    </div>
+  </li>
+))}
       </ul>
 
       {modalIsOpen && (
