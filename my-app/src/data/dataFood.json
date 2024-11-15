@@ -1,12 +1,5 @@
 [
-    {
-      "name": "Рыбные деликатесы",
-      "weight": "350 g",
-      "imageSrc": "../Component/image/1pos.png"
-    },
-    {
-      "name": "Русский малосол",
-      "weight": "300 g",
-      "imageSrc": "../Component/image/2pos.png"
-    }
+  { "id": 1, "name": "Рыбные деликатесы", "description": "350g 58р", "img": "" },
+  { "id": 2, "name": "Русский малосол", "description": "350g 58р", "img": ""},
+  { "id": 3, "name": "Хлебная корзина с чесночным маслом", "description": "350g 58р", "img": "" }
 ]

@@ -1,78 +1,97 @@
-import { useState, useEffect } from "react";
-import BoxFurniture from "../box/boxfurniture";
-import DataFurniture from '../../data/dataFood.json';
-import PopupModalChange from "../popuppag/popupmodalchange";
+import React, { useState, useEffect } from 'react';
 import './SectionFurniture.css';
-import ButtonBlackStyle from "../buttonblack/buttonblack";
+import data from '../../data/dataFood.json';
 
-function SectionFurniture() {
+function Boxfurniture() {
+  const [items, setItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [currentItem, setCurrentItem] = useState(null);
 
-    const [dataFurniture, setDataFurniture] = useState([]);
-    const [openModalChange, setOpenModalChange] = useState(false);
-    const [indexChangeElement, setIndexChangeElement] = useState(null);
-    
+  useEffect(() => {
+    setItems(data);
+  }, []);
 
-    useEffect(()=>{
-        fetch(DataFurniture)
-            .then(res => res.json())
-            .then(data => setDataFurniture(data))
-    },[])
+  const addItem = () => {
+    const newItem = { id: Date.now(), name: `Блюдо ${items.length + 1}`, description: `Описание блюда ${items.length + 1}`};
+    setItems([...items, newItem]);
+  };
 
-    function deleteObjectFromArr(index) {
-        setDataFurniture([...dataFurniture.slice(0, index), ...dataFurniture.slice(index + 1)]);
-    }
+  const deleteItem = (id) => {
+    setItems(items.filter(item => item.id !== id));
+  };
 
-    function addNewObject(name, description) {
-        const newObject = { name, description, imageSrc: "../image/10poshot.png" }; 
-        setDataFurniture([...dataFurniture, newObject]);
-    }
+  const editItem = (id, newName) => {
+    const updatedItems = items.map(item => {
+      if (item.id === id) {
+        return { ...item, name: newName };
+      }
+      return item;
+    });
+    setItems(updatedItems);
+  };
 
-    function changeObject(index, name, description) {
-        const updatedObject = { ...dataFurniture[index], name, description };
-        setDataFurniture([...dataFurniture.slice(0, index), updatedObject, ...dataFurniture.slice(index + 1)]);
-    }
+  const toggleSelectItem = (id) => {
+    setSelectedItems(selectedItems.includes(id)
+      ? selectedItems.filter(itemId => itemId !== id)
+      : [...selectedItems, id]);
+  };
 
-    const toggleOpenModalChange = () => {
-        setOpenModalChange(!openModalChange);
-    };
+  const openModal = (item) => {
+    setCurrentItem(item);
+    setModalIsOpen(true);
+  };
 
-    const furnitureCards = dataFurniture.map((furniture, index) => (
-        <BoxFurniture
-            key={index}
-            indexId={index}
-            name={furniture.name}
-            description={furniture.description}
-            imageSrc={furniture.imageSrc}
-            deleteFunction={() => deleteObjectFromArr}
-            changeFunction={() => {
-                setIndexChangeElement(index);
-                toggleOpenModalChange();
-            }}
-        />
-    ));
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setCurrentItem(null);
+  };
 
-    return (
-        <section className="section-furniture">
-            <div className="content-furniture">
-                <div className="title-furniture">
-                    <h2 className="h2-text-size-big">Furniture Collection</h2>
-                    <button className="button-explore-all">Explore all furniture</button>
-                </div>
-                <ButtonBlackStyle title="Добавить" onClickEvent={() => addNewObject(`New Furniture ${dataFurniture.length + 1}`, 'New Description')} />
-                <div className="furniture-cards">
-                    {furnitureCards}
-                </div>
-            </div>
-            <PopupModalChange
-                openModalChange={openModalChange}
-                toggleOpenModalChange={() => toggleOpenModalChange}
-                indexChangeElement={indexChangeElement}
-                name={indexChangeElement !== null ? dataFurniture[indexChangeElement].name : ''}
-                description={indexChangeElement !== null ? dataFurniture[indexChangeElement].description : ''}
-                changeFunction={() => changeObject}
-            />
-        </section>
-    );
+  const handleInputChange = (e) => {
+    const newName = e.target.value;
+    setCurrentItem({ ...currentItem, name: newName });
+    editItem(currentItem.id, newName);
+  };
+
+  return (
+    <div className="SectionFurniture">
+      <h1>Блюда</h1>
+      <button onClick={addItem}>Добавить</button>
+      <ul>
+        {items.map(item => (
+          <li
+            key={item.id}
+            onClick={() => toggleSelectItem(item.id)}
+            style={{ backgroundColor: selectedItems.includes(item.id) ? 'lightblue' : 'white' }}
+          >
+            {item.img}
+            {item.name}
+            <button onClick={(e) => { e.stopPropagation(); openModal(item); }}>Посмотреть</button>
+            <button onClick={(e) => { e.stopPropagation(); deleteItem(item.id); }}>Удалить</button>
+          </li>
+        ))}
+      </ul>
+
+      {modalIsOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>&times;</span>
+            {currentItem && (
+              <div>
+                <h2>{currentItem.name}</h2>
+                <p>{currentItem.description}</p>
+                <input
+                  type="text"
+                  value={currentItem.name}
+                  onChange={handleInputChange}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default SectionFurniture;
+export default Boxfurniture;
